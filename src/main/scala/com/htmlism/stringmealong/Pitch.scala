@@ -1,7 +1,7 @@
 package com.htmlism.stringmealong
 
 case class Pitch(note: Note, octave: Octave) {
-  def next: Pitch =
+  def sharp: Pitch =
     if (note.n < 12)
       this.copy(note = Note(note.n + 1))
     else
