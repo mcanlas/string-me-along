@@ -18,7 +18,7 @@ object TunedString {
 }
 
 case class TunedString(pitches: List[Pitch]) {
-  def fingering(n: Note): List[Int] =
+  def fingerings(n: Note): List[Int] =
     pitches
       .zipWithIndex
       .filter { case (pitch, _) => pitch.note == n }

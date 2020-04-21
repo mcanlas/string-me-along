@@ -7,6 +7,9 @@ object Note {
       note
     else
       semitones(note.s, n - 1)
+
+  def spelling(n: Int): String =
+    List("", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B")(n)
 }
 
 case class Note(n: Int) {

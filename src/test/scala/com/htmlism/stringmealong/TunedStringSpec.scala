@@ -9,7 +9,7 @@ class TunedStringSpec extends AnyFunSuite with Matchers {
   }
 
   test("C4 string with four frets can play C and E") {
-    (C.o4 * 4).fingering(C) should contain theSameElementsInOrderAs List(0)
-    (C.o4 * 4).fingering(E) should contain theSameElementsInOrderAs List(4)
+    (C.o4 * 4).fingerings(C) should contain theSameElementsInOrderAs List(0)
+    (C.o4 * 4).fingerings(E) should contain theSameElementsInOrderAs List(4)
   }
 }
