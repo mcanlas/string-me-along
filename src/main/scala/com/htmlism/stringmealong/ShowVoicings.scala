@@ -21,9 +21,7 @@ object ShowVoicings extends App {
 
   def demo(instrument: StringInstrument, chord: List[Note]) = {
     val stringsWithFingerings =
-      instrument.strings.toList.map { tuning =>
-        val tunedString = tuning * instrument.frets
-
+      instrument.tunedStrings.toList.map { tunedString =>
         for {
           note <- chord
           f <- fingerings(tunedString)(note)
@@ -57,7 +55,7 @@ object ShowVoicings extends App {
       .zipWithIndex
       .map {
         case (OnFret(f), n) =>
-          val pitch = (instrument.strings.toList(n) * instrument.frets).pitches(f)
+          val pitch = instrument.tunedStrings.toList(n).pitches(f)
 
           Note.spelling(pitch.note.n) + pitch.octave.n
         case (SkipThisString, _) =>
