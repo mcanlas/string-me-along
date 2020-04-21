@@ -33,11 +33,24 @@ object ShowVoicings extends App {
     val zero =
       List(StringVoicing.empty)
 
+    // TODO sort by chord diversity (3 notes vs 2 notes) (add instrument as parameter)
+    // TODO zero fret should not impact distance score
     stringsWithFingerings
       .foldLeft(zero)(combine)
-      .map(toPrintedChord(instrument))
+      .sortBy(StringVoicing.difficulty)
+      .map(sv => toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(sv))
       .foreach(println)
   }
+
+  def toPrintedFingering(stringVoicing: StringVoicing): String =
+    stringVoicing
+      .fingering
+      .map {
+        case OnFret(f) =>
+          f
+        case SkipThisString =>
+          "X"
+      }.mkString(",")
 
   def toPrintedChord(instrument: StringInstrument)(stringVoicing: StringVoicing): String =
     stringVoicing
