@@ -31,11 +31,10 @@ object ShowVoicings extends App {
     val zero =
       List(StringVoicing.empty)
 
-    // TODO sort by chord diversity (3 notes vs 2 notes) (add instrument as parameter)
     stringsWithFingerings
       .foldLeft(zero)(combine)
-      .sortBy(StringVoicing.difficulty)
-      .map(sv => toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(sv))
+      .sortBy(StringVoicing.difficulty(instrument))
+      .map(sv => toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(instrument)(sv))
       .foreach(println)
   }
 

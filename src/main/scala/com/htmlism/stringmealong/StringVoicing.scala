@@ -1,9 +1,27 @@
 package com.htmlism.stringmealong
 
 object StringVoicing {
-  val empty = StringVoicing(Nil)
+  val empty: StringVoicing = StringVoicing(Nil)
 
-  def difficulty(v: StringVoicing): (Int, Int) = {
+  def uniqueNotes(instrument: StringInstrument)(v: StringVoicing): Int = {
+    val tunings = instrument.tunedStrings.toList.zipWithIndex
+
+    val pitches =
+      tunings.flatMap { case (s, n) =>
+        val fingeringOnString = v.fingering(n)
+
+        fingeringOnString match {
+          case OnFret(n) =>
+            List(s.pitches(n))
+          case SkipThisString =>
+            Nil
+        }
+      }
+
+    pitches.map(_.note).toSet.size
+  }
+
+  def difficulty(instrument: StringInstrument)(v: StringVoicing): (Int, Int, Int) = {
     val asNumeric = v.fingering.map {
       case OnFret(n) =>
         n
@@ -16,7 +34,7 @@ object StringVoicing {
 
     val height = asNumeric.max
 
-    (nonZeroMax - nonZeroMin, height)
+    (-1 * uniqueNotes(instrument)(v), nonZeroMax - nonZeroMin, height)
   }
 
   def safeSpan(xs: List[Int])(f: List[Int] => Int): Int =
