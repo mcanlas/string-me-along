@@ -27,4 +27,7 @@ case class Pitch(note: Note, octave: Octave) {
 
   def fifth: Pitch =
     Pitch.semitones(this, 7)
+
+  def *(n: Int): TunedString =
+    TunedString(this, n)
 }

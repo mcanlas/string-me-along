@@ -19,6 +19,6 @@ package object stringmealong {
   val Bb: Note = Note(11)
   val B:  Note = Note(12)
 
-  val guitar:  StringInstrument = StringInstrument(10, NonEmptyList.of(A.o4, E.o4, C.o4, G.o4))
-  val ukulele: StringInstrument = StringInstrument(10, NonEmptyList.of(E.o4, B.o3, G.o3, D.o3, A.o2, E.o2))
+  val guitar:  StringInstrument = StringInstrument(10, NonEmptyList.of(E.o4, B.o3, G.o3, D.o3, A.o2, E.o2))
+  val ukulele: StringInstrument = StringInstrument(10, NonEmptyList.of(A.o4, E.o4, C.o4, G.o4))
 }
