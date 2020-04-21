@@ -11,11 +11,19 @@ object StringVoicing {
         99
     }
 
-    val min = asNumeric.min
-    val max = asNumeric.max
+    val nonZeroMin = safeSpan(asNumeric.filter(_ != 0))(_.min)
+    val nonZeroMax = safeSpan(asNumeric.filter(_ != 0))(_.max)
 
-    (max - min, min)
+    val height = asNumeric.max
+
+    (nonZeroMax - nonZeroMin, height)
   }
+
+  def safeSpan(xs: List[Int])(f: List[Int] => Int): Int =
+    xs match {
+      case Nil => 0
+      case _ => f(xs)
+    }
 }
 
 case class StringVoicing(fingering: List[Fingering]) {

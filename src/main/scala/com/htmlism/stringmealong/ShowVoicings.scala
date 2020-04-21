@@ -34,7 +34,6 @@ object ShowVoicings extends App {
       List(StringVoicing.empty)
 
     // TODO sort by chord diversity (3 notes vs 2 notes) (add instrument as parameter)
-    // TODO zero fret should not impact distance score
     stringsWithFingerings
       .foldLeft(zero)(combine)
       .sortBy(StringVoicing.difficulty)
