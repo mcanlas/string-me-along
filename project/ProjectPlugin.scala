@@ -17,7 +17,7 @@ object ProjectPlugin extends AutoPlugin {
   override def trigger: PluginTrigger = AllRequirements
 
   override val buildSettings: Seq[Setting[String]] = Seq(
-    scalaVersion := "2.13.1"
+    scalaVersion := "2.13.2"
   )
 
   object ThingsToAutoImport {
