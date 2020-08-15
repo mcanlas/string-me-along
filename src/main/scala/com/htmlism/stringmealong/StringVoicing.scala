@@ -7,15 +7,16 @@ object StringVoicing {
     val tunings = instrument.tunedStrings.toList.zipWithIndex
 
     val pitches =
-      tunings.flatMap { case (s, n) =>
-        val fingeringOnString = v.fingering(n)
+      tunings.flatMap {
+        case (s, n) =>
+          val fingeringOnString = v.fingering(n)
 
-        fingeringOnString match {
-          case OnFret(n) =>
-            List(s.pitches(n))
-          case SkipThisString =>
-            Nil
-        }
+          fingeringOnString match {
+            case OnFret(n) =>
+              List(s.pitches(n))
+            case SkipThisString =>
+              Nil
+          }
       }
 
     pitches.map(_.note).toSet.size
@@ -40,7 +41,7 @@ object StringVoicing {
   def safeSpan(xs: List[Int])(f: List[Int] => Int): Int =
     xs match {
       case Nil => 0
-      case _ => f(xs)
+      case _   => f(xs)
     }
 }
 

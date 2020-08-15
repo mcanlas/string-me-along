@@ -7,11 +7,11 @@ object ShowVoicings extends App {
   def fingerings(tunedString: TunedString)(note: Note): List[Fingering] =
     tunedString
       .fingerings(note) match {
-        case Nil =>
-          List(SkipThisString)
-        case xs =>
-          xs.map(OnFret.apply)
-      }
+      case Nil =>
+        List(SkipThisString)
+      case xs =>
+        xs.map(OnFret.apply)
+    }
 
   def combine(vs: List[StringVoicing], fs: List[Fingering]) =
     for {
@@ -24,7 +24,7 @@ object ShowVoicings extends App {
       instrument.tunedStrings.toList.map { tunedString =>
         for {
           note <- chord
-          f <- fingerings(tunedString)(note)
+          f    <- fingerings(tunedString)(note)
         } yield f
       }
 
@@ -34,24 +34,24 @@ object ShowVoicings extends App {
     stringsWithFingerings
       .foldLeft(zero)(combine)
       .sortBy(StringVoicing.difficulty(instrument))
-      .map(sv => toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(instrument)(sv))
+      .map(sv =>
+        toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(instrument)(sv)
+      )
       .foreach(println)
   }
 
   def toPrintedFingering(stringVoicing: StringVoicing): String =
-    stringVoicing
-      .fingering
+    stringVoicing.fingering
       .map {
         case OnFret(f) =>
           f
         case SkipThisString =>
           "X"
-      }.mkString(",")
+      }
+      .mkString(",")
 
   def toPrintedChord(instrument: StringInstrument)(stringVoicing: StringVoicing): String =
-    stringVoicing
-      .fingering
-      .zipWithIndex
+    stringVoicing.fingering.zipWithIndex
       .map {
         case (OnFret(f), n) =>
           val pitch = instrument.tunedStrings.toList(n).pitches(f)
@@ -59,7 +59,8 @@ object ShowVoicings extends App {
           Note.spelling(pitch.note.n) + pitch.octave.n
         case (SkipThisString, _) =>
           "X"
-      }.mkString(",")
+      }
+      .mkString(",")
 
   demo(ukulele, majorChord(C))
   println

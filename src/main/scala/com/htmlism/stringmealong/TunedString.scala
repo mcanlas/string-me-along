@@ -7,8 +7,8 @@ object TunedString {
     }
 
   /**
-   * Generates an ascending list of pitches raised by `n` semitones.
-   */
+    * Generates an ascending list of pitches raised by `n` semitones.
+    */
   @scala.annotation.tailrec
   def pitchList(xs: List[Pitch], n: Int): List[Pitch] =
     if (n < 1)
@@ -19,8 +19,7 @@ object TunedString {
 
 case class TunedString(pitches: List[Pitch]) {
   def fingerings(n: Note): List[Int] =
-    pitches
-      .zipWithIndex
+    pitches.zipWithIndex
       .filter { case (pitch, _) => pitch.note == n }
       .map(_._2)
 }
