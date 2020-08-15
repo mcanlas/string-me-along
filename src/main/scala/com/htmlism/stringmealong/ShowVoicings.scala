@@ -63,10 +63,10 @@ object ShowVoicings extends App {
       .mkString(",")
 
   demo(ukulele, majorChord(C))
-  println
+  println()
   demo(ukulele, majorChord(F))
-  println
+  println()
   demo(ukulele, majorChord(G))
-  println
+  println()
   demo(ukulele, majorChord(A))
 }
