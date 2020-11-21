@@ -1,5 +1,7 @@
 package com.htmlism.stringmealong
 
+import com.htmlism.stringmealong.syntax._
+
 object ShowVoicings extends App {
   def majorChord(note: Note) =
     List(note, note.third, note.fifth)

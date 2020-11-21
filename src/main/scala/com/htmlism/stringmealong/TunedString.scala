@@ -1,5 +1,7 @@
 package com.htmlism.stringmealong
 
+import com.htmlism.stringmealong.syntax._
+
 object TunedString {
   def apply(pitch: Pitch, n: Int): TunedString =
     TunedString {

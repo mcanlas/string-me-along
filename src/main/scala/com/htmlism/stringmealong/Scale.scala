@@ -1,6 +1,7 @@
 package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.Interval._
+import com.htmlism.stringmealong.syntax._
 
 import scala.annotation.tailrec
 
