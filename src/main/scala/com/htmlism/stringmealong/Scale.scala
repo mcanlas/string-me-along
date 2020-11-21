@@ -23,6 +23,9 @@ case class Scale(intervals: List[Interval]) {
     */
   def sharp(n: Int): Scale =
     ???
+
+  def nextIntervalSequence: Scale =
+    Scale(intervals.tail ::: List(intervals.head))
 }
 
 object Scale {
@@ -34,4 +37,33 @@ object Scale {
 
   val HarmonicMinorScale: Scale =
     Scale(List(WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, AugmentedSecond, HalfStep))
+
+  val MajorPentatonicScale: Scale =
+    Scale(List(WholeStep, WholeStep, AugmentedSecond, WholeStep, AugmentedSecond))
+
+  val MinorPentatonicScale: Scale =
+    Scale(List(AugmentedSecond, AugmentedSecond, WholeStep, AugmentedSecond, WholeStep))
+
+  object Diatonic {
+    val Ionian: Scale =
+      MajorScale
+
+    val Dorian: Scale =
+      Scale(List(WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep, WholeStep))
+
+    val Phrygian: Scale =
+      Scale(List(HalfStep, WholeStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep))
+
+    val Lydian: Scale =
+      Scale(List(WholeStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, HalfStep))
+
+    val Myxolydian: Scale =
+      Scale(List(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, WholeStep))
+
+    val Aeolion: Scale =
+      NaturalMinorScale
+
+    val Locrian: Scale =
+      Scale(List(HalfStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep))
+  }
 }

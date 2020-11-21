@@ -18,4 +18,14 @@ class ScaleSpec extends AnyFunSuite with Matchers {
       .flat(3)
       .flat(6) shouldBe Scale.HarmonicMinorScale
   }
+
+  test("diatonic cycle") {
+    Scale.Diatonic.Ionian.nextIntervalSequence shouldBe Scale.Diatonic.Dorian
+    Scale.Diatonic.Dorian.nextIntervalSequence shouldBe Scale.Diatonic.Phrygian
+    Scale.Diatonic.Phrygian.nextIntervalSequence shouldBe Scale.Diatonic.Lydian
+    Scale.Diatonic.Lydian.nextIntervalSequence shouldBe Scale.Diatonic.Myxolydian
+    Scale.Diatonic.Myxolydian.nextIntervalSequence shouldBe Scale.Diatonic.Aeolion
+    Scale.Diatonic.Aeolion.nextIntervalSequence shouldBe Scale.Diatonic.Locrian
+    Scale.Diatonic.Locrian.nextIntervalSequence shouldBe Scale.Diatonic.Ionian
+  }
 }
