@@ -2,14 +2,16 @@ package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.Interval._
 
+import scala.annotation.tailrec
+
 case class Scale(intervals: List[Interval]) {
   /**
     * Returns a new scale with the Nth scale degree flattened
     */
-  def flat(n: Int): Scale = {
+  def flat(deg: ScaleDegree): Scale = {
     // accounts for zero indexing AND the difference between intervals and degrees
-    val intervalStartIndex = n - 2
-    val intervalEndIndex = n - 1
+    val intervalStartIndex = deg.n - 2
+    val intervalEndIndex = deg.n - 1
 
     Scale {
       intervals
@@ -29,6 +31,24 @@ case class Scale(intervals: List[Interval]) {
 }
 
 object Scale {
+  def toPitchCollectionFrom(root: Pitch, scale: Scale): List[Pitch] =
+    pitchList(List(root), scale.intervals)
+
+  @tailrec
+  private def pitchList(xs: List[Pitch], intervals: List[Interval]): List[Pitch] =
+    intervals match {
+      case newestInterval :: remainingIntervals =>
+        val newPitch =
+          List
+            .fill(newestInterval.semitones)(())
+            .foldLeft(xs.head)((acc, _) => acc.sharp)
+
+        pitchList(newPitch +: xs, remainingIntervals)
+
+      case Nil =>
+        xs.reverse
+    }
+
   val MajorScale: Scale =
     Scale(List(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep))
 
