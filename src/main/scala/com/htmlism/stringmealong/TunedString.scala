@@ -14,9 +14,12 @@ object TunedString {
     if (n < 1)
       xs.reverse
     else
-      pitchList(xs.head.s :: xs, n - 1)
+      pitchList(xs.head.sharp :: xs, n - 1)
 }
 
+/**
+  * A collection of pitches starting from an open tone to each fretted tone
+  */
 case class TunedString(pitches: List[Pitch]) {
   def fingerings(n: Note): List[Int] =
     pitches.zipWithIndex

@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 class TunedStringSpec extends AnyFunSuite with Matchers {
   test("a tuned string comes from a pitch and fret length") {
-    C.o4 * 2 shouldBe TunedString(List(C.o4, C.o4.s, C.o4.s.s))
+    C.o4 * 2 shouldBe TunedString(List(C.o4, C.o4.sharp, C.o4.sharp.sharp))
   }
 
   test("C4 string with four frets can play C and E") {

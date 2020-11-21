@@ -6,17 +6,17 @@ object Pitch {
     if (n < 1)
       pitch
     else
-      semitones(pitch.s, n - 1)
+      semitones(pitch.sharp, n - 1)
 }
 
 case class Pitch(note: Note, octave: Octave) {
-  def s: Pitch =
+  def sharp: Pitch =
     if (note.n < 12)
       this.copy(note = note.s)
     else
       Pitch(Note(1), Octave(this.octave.n + 1))
 
-  def b: Pitch =
+  def flat: Pitch =
     if (note.n == 1)
       Pitch(Note(12), Octave(this.octave.n - 1))
     else
