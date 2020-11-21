@@ -1,33 +1,42 @@
 package com.htmlism.stringmealong
 
-abstract class Interval(val semitones: Int)
+case class Interval(semitones: Int)
 
 object Interval {
-  case object Unison extends Interval(0)
+  lazy val WholeStep: Interval =
+    MajorSecond
 
-  case object MinorSecond extends Interval(1)
+  lazy val HalfStep: Interval =
+    MinorSecond
 
-  case object MajorSecond extends Interval(2)
+  lazy val AugmentedSecond: Interval =
+    MinorThird
 
-  case object MinorThird extends Interval(3)
+  val Unison: Interval = Interval(0)
 
-  case object MajorThird extends Interval(4)
+  val MinorSecond: Interval = Interval(1)
 
-  case object PerfectFourth extends Interval(5)
+  val MajorSecond: Interval = Interval(2)
 
-  case object Tritone extends Interval(6)
+  val MinorThird: Interval = Interval(3)
 
-  case object PerfectFifth extends Interval(7)
+  val MajorThird: Interval = Interval(4)
 
-  case object MinorSixth extends Interval(8)
+  val PerfectFourth: Interval = Interval(5)
 
-  case object MajorSixth extends Interval(9)
+  val Tritone: Interval = Interval(6)
 
-  case object MinorSeventh extends Interval(10)
+  val PerfectFifth: Interval = Interval(7)
 
-  case object MajorSeventh extends Interval(11)
+  val MinorSixth: Interval = Interval(8)
 
-  case object Octave extends Interval(12)
+  val MajorSixth: Interval = Interval(9)
+
+  val MinorSeventh: Interval = Interval(10)
+
+  val MajorSeventh: Interval = Interval(11)
+
+  val Octave: Interval = Interval(12)
 }
 
 
