@@ -5,19 +5,19 @@ import org.scalatest.matchers.should.Matchers
 
 class NoteSpec extends AnyFunSuite with Matchers {
   test("the next pitch after C is C#") {
-    C.s shouldBe Cs
+    C.sharp shouldBe Cs
   }
 
   test("the next pitch after B is C (octave test)") {
-    B.s shouldBe C
+    B.sharp shouldBe C
   }
 
   test("the previous pitch from C# is C") {
-    Cs.b shouldBe C
+    Cs.flat shouldBe C
   }
 
   test("the previous pitch from C is B (octave test)") {
-    C.b shouldBe B
+    C.flat shouldBe B
   }
 
   test("a third from C is E") {
