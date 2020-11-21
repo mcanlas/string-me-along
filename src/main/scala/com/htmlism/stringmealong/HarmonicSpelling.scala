@@ -26,7 +26,7 @@ object HarmonicSpelling {
           delta match {
             case -2 => "bb"
             case -1 | 11 => "b"
-            case 0 => ""
+            case 0 | -12 => ""
             case 1 | -11 => "#"
             case 2 => "x"
           }
