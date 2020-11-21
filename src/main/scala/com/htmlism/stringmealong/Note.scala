@@ -36,4 +36,7 @@ case class Note(n: Int) {
 
   def fifth: Note =
     Note.raiseBySemitones(this, 7)
+
+  def raisedBy(int: Interval): Note =
+    Note.raiseBySemitones(this, int.semitones)
 }

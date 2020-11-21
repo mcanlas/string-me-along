@@ -31,4 +31,12 @@ class NoteSpec extends AnyFunSuite with Matchers {
   test("a third from A is C#") {
     A.third shouldBe Cs
   }
+
+  test("C raised by a minor third is Eb") {
+    C.raisedBy(Interval.MinorThird) shouldBe Eb
+  }
+
+  test("C raised by a major third is E") {
+    C.raisedBy(Interval.MajorThird) shouldBe E
+  }
 }
