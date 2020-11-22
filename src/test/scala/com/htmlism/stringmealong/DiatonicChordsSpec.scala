@@ -30,4 +30,39 @@ class DiatonicChordsSpec extends AnyFunSuite with Matchers {
       }
     }
   }
+
+  test("diatonic sevenths") {
+    for (s <- Scale.Diatonic.all) {
+      println()
+      println(Scale.Diatonic.label(s))
+
+      for (scaleDegreeN <- 1 to 7) {
+        val baseIntervalIndex = scaleDegreeN - 1
+        //        println(baseIntervalIndex)
+
+        val firstInterval =
+          s.intervalAtIndex(baseIntervalIndex + 0) +
+            s.intervalAtIndex(baseIntervalIndex + 1)
+
+        val secondInterval =
+          s.intervalAtIndex(baseIntervalIndex + 0) +
+            s.intervalAtIndex(baseIntervalIndex + 1) +
+            s.intervalAtIndex(baseIntervalIndex + 2) +
+            s.intervalAtIndex(baseIntervalIndex + 3)
+
+        val thirdInterval =
+          s.intervalAtIndex(baseIntervalIndex + 0) +
+            s.intervalAtIndex(baseIntervalIndex + 1) +
+            s.intervalAtIndex(baseIntervalIndex + 2) +
+            s.intervalAtIndex(baseIntervalIndex + 3) +
+            s.intervalAtIndex(baseIntervalIndex + 4) +
+            s.intervalAtIndex(baseIntervalIndex + 5)
+
+        val seventh =
+          Seventh(firstInterval, secondInterval, thirdInterval)
+
+        println(Seventh.atScaleDegree(ScaleDegree(scaleDegreeN), seventh))
+      }
+    }
+  }
 }

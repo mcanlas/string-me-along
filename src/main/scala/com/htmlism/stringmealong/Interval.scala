@@ -24,6 +24,9 @@ object Interval {
   lazy val DiminishedFifth: Interval =
     Tritone
 
+  lazy val DiminishedSeventh: Interval =
+    MajorSixth
+
   val Unison: Interval = Interval(0)
 
   val MinorSecond: Interval = Interval(1)
