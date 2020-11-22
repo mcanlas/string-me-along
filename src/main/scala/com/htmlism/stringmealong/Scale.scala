@@ -29,6 +29,9 @@ case class Scale(intervals: List[Interval]) {
 
   def nextIntervalSequence: Scale =
     Scale(intervals.tail ::: List(intervals.head))
+
+  def intervalAtIndex(n: Int): Interval =
+    intervals(n % intervals.length)
 }
 
 object Scale {
@@ -86,5 +89,23 @@ object Scale {
 
     val Locrian: Scale =
       Scale(List(HalfStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep))
+
+    val all: List[Scale] =
+      List(Ionian, Dorian, Phrygian, Lydian, Myxolydian, Aeolion, Locrian)
+
+    private val labels =
+      Map(
+        Ionian -> "Ionian",
+        Dorian -> "Dorian",
+        Phrygian -> "Phrygian",
+        Lydian -> "Lydian",
+        Myxolydian -> "Myxolydian",
+        Aeolion -> "Aeolion",
+        Locrian -> "Locrian",
+      )
+
+    def label(s: Scale): String =
+      labels
+        .getOrElse(s, "UNRECOGNIZED DIATONIC SCALE")
   }
 }

@@ -1,6 +1,9 @@
 package com.htmlism.stringmealong
 
-case class Interval(semitones: Int)
+case class Interval(semitones: Int) {
+  def + (that: Interval): Interval =
+    Interval(this.semitones + that.semitones)
+}
 
 object Interval {
   lazy val WholeStep: Interval =
@@ -11,6 +14,15 @@ object Interval {
 
   lazy val AugmentedSecond: Interval =
     MinorThird
+
+  lazy val Root: Interval =
+    Unison
+
+  lazy val AugmentedFifth: Interval =
+    MinorSixth
+
+  lazy val DiminishedFifth: Interval =
+    Tritone
 
   val Unison: Interval = Interval(0)
 
