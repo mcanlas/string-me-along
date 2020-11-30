@@ -30,6 +30,6 @@ object OctatonicSpelling {
       F -> Note(6),
       G -> Note(8),
       A -> Note(10),
-      B -> Note(12),
+      B -> Note(12)
     )
 }

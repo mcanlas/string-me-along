@@ -3,6 +3,7 @@ package com.htmlism.stringmealong
 import com.htmlism.stringmealong.Interval._
 
 trait Chord {
+
   /**
     * List of intervals from the root of the chord
     */

@@ -7,31 +7,31 @@ object HarmonicSpelling {
     val pitches =
       Scale.toPitchCollectionFrom(root, scale)
 
-    pitches
-      .zipWithIndex
-      .map { case (p, i) =>
-        val baseSpellingAtDegree =
-          List
-            .fill(i)(())
-            .foldLeft(baseSpelling)((acc, _) => acc.nextOctatonic)
+    pitches.zipWithIndex
+      .map {
+        case (p, i) =>
+          val baseSpellingAtDegree =
+            List
+              .fill(i)(())
+              .foldLeft(baseSpelling)((acc, _) => acc.nextOctatonic)
 
-        val startingTone =
-          OctatonicSpelling
-            .notes(baseSpellingAtDegree)
+          val startingTone =
+            OctatonicSpelling
+              .notes(baseSpellingAtDegree)
 
-        val delta =
-          p.note.n - startingTone.n
+          val delta =
+            p.note.n - startingTone.n
 
-        val accidentalString =
-          delta match {
-            case -2 => "bb"
-            case -1 | 11 => "b"
-            case 0 | -12 => ""
-            case 1 | -11 => "#"
-            case 2 => "x"
-          }
+          val accidentalString =
+            delta match {
+              case -2      => "bb"
+              case -1 | 11 => "b"
+              case 0 | -12 => ""
+              case 1 | -11 => "#"
+              case 2       => "x"
+            }
 
-        baseSpellingAtDegree.spell + accidentalString
+          baseSpellingAtDegree.spell + accidentalString
       }
   }
 }

@@ -6,13 +6,14 @@ import com.htmlism.stringmealong.syntax._
 import scala.annotation.tailrec
 
 case class Scale(intervals: List[Interval]) {
+
   /**
     * Returns a new scale with the Nth scale degree flattened
     */
   def flat(deg: ScaleDegree): Scale = {
     // accounts for zero indexing AND the difference between intervals and degrees
     val intervalStartIndex = deg.n - 2
-    val intervalEndIndex = deg.n - 1
+    val intervalEndIndex   = deg.n - 1
 
     Scale {
       intervals
@@ -95,13 +96,13 @@ object Scale {
 
     private val labels =
       Map(
-        Ionian -> "Ionian",
-        Dorian -> "Dorian",
-        Phrygian -> "Phrygian",
-        Lydian -> "Lydian",
+        Ionian     -> "Ionian",
+        Dorian     -> "Dorian",
+        Phrygian   -> "Phrygian",
+        Lydian     -> "Lydian",
         Myxolydian -> "Myxolydian",
-        Aeolion -> "Aeolion",
-        Locrian -> "Locrian",
+        Aeolion    -> "Aeolion",
+        Locrian    -> "Locrian"
       )
 
     def label(s: Scale): String =
