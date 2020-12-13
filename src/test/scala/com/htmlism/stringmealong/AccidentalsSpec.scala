@@ -1,9 +1,9 @@
 package com.htmlism.stringmealong
 
-import com.htmlism.stringmealong.syntax._
-
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
+
+import com.htmlism.stringmealong.syntax._
 
 class AccidentalsSpec extends AnyFunSuite with Matchers {
   test("sharps") {
