@@ -40,7 +40,7 @@ object StringVoicing {
   def safeSpan(xs: List[Int])(f: List[Int] => Int): Int =
     xs match {
       case Nil => 0
-      case _   => f(xs)
+      case _ => f(xs)
     }
 }
 

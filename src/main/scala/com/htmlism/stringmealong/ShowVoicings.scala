@@ -26,7 +26,7 @@ object ShowVoicings extends App {
       instrument.tunedStrings.toList.map { tunedString =>
         for {
           note <- chord
-          f    <- fingerings(tunedString)(note)
+          f <- fingerings(tunedString)(note)
         } yield f
       }
 
