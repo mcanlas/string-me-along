@@ -5,14 +5,16 @@ import org.scalatest.matchers.should.Matchers
 
 class ScaleSpec extends AnyFunSuite with Matchers {
   test("natural minor derivation from parallel major") {
-    Scale.MajorScale
+    Scale
+      .MajorScale
       .flat(ScaleDegree(3))
       .flat(ScaleDegree(6))
       .flat(ScaleDegree(7)) shouldBe Scale.NaturalMinorScale
   }
 
   test("harmonic minor derivation from parallel major") {
-    Scale.MajorScale
+    Scale
+      .MajorScale
       .flat(ScaleDegree(3))
       .flat(ScaleDegree(6)) shouldBe Scale.HarmonicMinorScale
   }

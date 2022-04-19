@@ -7,7 +7,8 @@ object HarmonicSpelling {
     val pitches =
       Scale.toPitchCollectionFrom(root, scale)
 
-    pitches.zipWithIndex
+    pitches
+      .zipWithIndex
       .map { case (p, i) =>
         val baseSpellingAtDegree =
           List

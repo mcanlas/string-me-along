@@ -43,7 +43,8 @@ object ShowVoicings extends App {
   }
 
   def toPrintedFingering(stringVoicing: StringVoicing): String =
-    stringVoicing.fingering
+    stringVoicing
+      .fingering
       .map {
         case OnFret(f) =>
           f
@@ -53,7 +54,9 @@ object ShowVoicings extends App {
       .mkString(",")
 
   def toPrintedChord(instrument: StringInstrument)(stringVoicing: StringVoicing): String =
-    stringVoicing.fingering.zipWithIndex
+    stringVoicing
+      .fingering
+      .zipWithIndex
       .map {
         case (OnFret(f), n) =>
           val pitch = instrument.tunedStrings.toList(n).pitches(f)
