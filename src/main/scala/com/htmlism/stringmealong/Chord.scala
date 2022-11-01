@@ -2,23 +2,21 @@ package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.Interval._
 
-trait Chord {
+trait Chord:
 
   /**
     * List of intervals from the root of the chord
     */
   def intervals: List[Interval]
-}
 
-case class Triad(firstInterval: Interval, secondInterval: Interval) extends Chord {
+case class Triad(firstInterval: Interval, secondInterval: Interval) extends Chord:
   def intervals: List[Interval] =
     List(firstInterval, secondInterval)
 
   def and(thirdInterval: Interval): Seventh =
     Seventh(firstInterval, secondInterval, thirdInterval)
-}
 
-object Triad {
+object Triad:
   val Major: Triad =
     Triad(MajorThird, PerfectFifth)
 
@@ -31,12 +29,12 @@ object Triad {
   val Augmented: Triad =
     Triad(MajorThird, AugmentedFifth)
 
-  def atScaleDegree(deg: ScaleDegree, triad: Triad): String = {
+  def atScaleDegree(deg: ScaleDegree, triad: Triad): String =
     val baseRoman =
       ScaleDegree
         .asRoman(deg)
 
-    triad match {
+    triad match
       case Major =>
         baseRoman
 
@@ -51,16 +49,12 @@ object Triad {
 
       case _ =>
         deg.toString + " " + triad.toString
-    }
-  }
-}
 
-case class Seventh(firstInterval: Interval, secondInterval: Interval, thirdInterval: Interval) extends Chord {
+case class Seventh(firstInterval: Interval, secondInterval: Interval, thirdInterval: Interval) extends Chord:
   def intervals: List[Interval] =
     List(firstInterval, secondInterval, thirdInterval)
-}
 
-object Seventh {
+object Seventh:
   val Major: Seventh =
     Triad.Major.and(MajorSeventh)
 
@@ -76,12 +70,12 @@ object Seventh {
   val Diminished: Seventh =
     Triad.Diminished.and(DiminishedSeventh)
 
-  def atScaleDegree(deg: ScaleDegree, seventh: Seventh): String = {
+  def atScaleDegree(deg: ScaleDegree, seventh: Seventh): String =
     val baseRoman =
       ScaleDegree
         .asRoman(deg)
 
-    seventh match {
+    seventh match
       case Dominant =>
         baseRoman + "7"
 
@@ -99,6 +93,3 @@ object Seventh {
 
       case _ =>
         baseRoman + " " + seventh.toString
-    }
-  }
-}

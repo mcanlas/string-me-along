@@ -2,8 +2,8 @@ package com.htmlism.stringmealong
 
 import scala.annotation.tailrec
 
-package object syntax {
-  implicit class MusicallyOrdinalOps[A](x: A)(implicit ev: MusicallyOrdinal[A]) {
+package object syntax:
+  implicit class MusicallyOrdinalOps[A](x: A)(implicit ev: MusicallyOrdinal[A]):
     def sharp: A =
       ev.sharpen(x)
 
@@ -18,7 +18,6 @@ package object syntax {
 
     def fifth: A =
       raisedBy(Interval.PerfectFifth)
-  }
 
   @tailrec
   private def applyN[A](x: A, f: A => A, n: Int): A =
@@ -26,4 +25,3 @@ package object syntax {
       x
     else
       applyN(f(x), f, n - 1)
-}

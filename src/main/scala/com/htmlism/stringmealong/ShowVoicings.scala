@@ -2,18 +2,17 @@ package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.syntax._
 
-object ShowVoicings extends App {
+object ShowVoicings extends App:
   def majorChord(note: Note) =
     List(note, note.third, note.fifth)
 
   def fingerings(tunedString: TunedString)(note: Note): List[Fingering] =
     tunedString
-      .fingerings(note) match {
+      .fingerings(note) match
       case Nil =>
         List(SkipThisString)
       case xs =>
         xs.map(OnFret.apply)
-    }
 
   def combine(vs: List[StringVoicing], fs: List[Fingering]) =
     for {
@@ -21,7 +20,7 @@ object ShowVoicings extends App {
       f <- fs
     } yield v + f
 
-  def demo(instrument: StringInstrument, chord: List[Note]) = {
+  def demo(instrument: StringInstrument, chord: List[Note]) =
     val stringsWithFingerings =
       instrument.tunedStrings.toList.map { tunedString =>
         for {
@@ -40,7 +39,6 @@ object ShowVoicings extends App {
         toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(instrument)(sv)
       )
       .foreach(println)
-  }
 
   def toPrintedFingering(stringVoicing: StringVoicing): String =
     stringVoicing
@@ -74,4 +72,3 @@ object ShowVoicings extends App {
   demo(ukulele, majorChord(G))
   println()
   demo(ukulele, majorChord(A))
-}

@@ -3,7 +3,7 @@ package com.htmlism.stringmealong
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class ScaleSpec extends AnyFunSuite with Matchers {
+class ScaleSpec extends AnyFunSuite with Matchers:
   test("natural minor derivation from parallel major") {
     Scale
       .MajorScale
@@ -28,4 +28,3 @@ class ScaleSpec extends AnyFunSuite with Matchers {
     Scale.Diatonic.Aeolion.nextIntervalSequence shouldBe Scale.Diatonic.Locrian
     Scale.Diatonic.Locrian.nextIntervalSequence shouldBe Scale.Diatonic.Ionian
   }
-}

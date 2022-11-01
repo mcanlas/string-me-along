@@ -2,9 +2,9 @@ package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.syntax._
 
-object Pitch {
+object Pitch:
   implicit val pitchOrdinal: MusicallyOrdinal[Pitch] =
-    new MusicallyOrdinal[Pitch] {
+    new MusicallyOrdinal[Pitch]:
       def sharpen(p: Pitch): Pitch =
         if (p.note.n < Note.max)
           p.copy(note = p.note.sharp)
@@ -16,10 +16,7 @@ object Pitch {
           Pitch(note = Note(Note.max), octave = Octave(p.octave.n - 1))
         else
           p.copy(note = p.note.flat)
-    }
-}
 
-case class Pitch(note: Note, octave: Octave) {
+case class Pitch(note: Note, octave: Octave):
   def *(n: Int): TunedString =
     TunedString(this, n)
-}

@@ -1,6 +1,6 @@
 package com.htmlism.stringmealong
 
-case class OctatonicSpelling(n: Int) {
+case class OctatonicSpelling(n: Int):
   def spell: String =
     OctatonicSpelling.spellings(n)
 
@@ -9,9 +9,8 @@ case class OctatonicSpelling(n: Int) {
       this.copy(n = n + 1)
     else
       this.copy(n = 0)
-}
 
-object OctatonicSpelling {
+object OctatonicSpelling:
   val A: OctatonicSpelling = OctatonicSpelling(0)
   val B: OctatonicSpelling = OctatonicSpelling(1)
   val C: OctatonicSpelling = OctatonicSpelling(2)
@@ -32,4 +31,3 @@ object OctatonicSpelling {
       A -> Note(10),
       B -> Note(12)
     )
-}

@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.htmlism.stringmealong.syntax._
 
-class OctatonicSpellingSpec extends AnyFunSuite with Matchers {
+class OctatonicSpellingSpec extends AnyFunSuite with Matchers:
   test("spell C major") {
     println {
       Scale.toPitchCollectionFrom(C.o4, Scale.MajorScale)
@@ -36,4 +36,3 @@ class OctatonicSpellingSpec extends AnyFunSuite with Matchers {
         .spellOctatonic(OctatonicSpelling.D, C.sharp.o4, Scale.MajorScale)
     }
   }
-}

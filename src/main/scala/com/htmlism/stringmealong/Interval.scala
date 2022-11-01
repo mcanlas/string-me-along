@@ -1,11 +1,10 @@
 package com.htmlism.stringmealong
 
-case class Interval(semitones: Int) {
+case class Interval(semitones: Int):
   def +(that: Interval): Interval =
     Interval(this.semitones + that.semitones)
-}
 
-object Interval {
+object Interval:
   lazy val WholeStep: Interval =
     MajorSecond
 
@@ -52,4 +51,3 @@ object Interval {
   val MajorSeventh: Interval = Interval(11)
 
   val Octave: Interval = Interval(12)
-}

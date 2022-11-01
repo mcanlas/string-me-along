@@ -5,9 +5,9 @@ import org.scalatest.matchers.should.Matchers
 
 import com.htmlism.stringmealong.syntax._
 
-class MajorScaleDegreeSpec extends AnyFunSuite with Matchers {
+class MajorScaleDegreeSpec extends AnyFunSuite with Matchers:
   test("modes as major scale modifications") {
-    for (s <- Scale.Diatonic.all) {
+    for (s <- Scale.Diatonic.all)
       val majorScaleIntervalsWithRoot =
         Interval.Root :: Scale.MajorScale.intervals
 
@@ -15,7 +15,7 @@ class MajorScaleDegreeSpec extends AnyFunSuite with Matchers {
         Interval.Root :: s.intervals
 
       val modifiedMajorScale =
-        for (n <- 1 to 8) yield {
+        for (n <- 1 to 8) yield
           val majorSemitones =
             majorScaleIntervalsWithRoot
               .take(n)
@@ -30,11 +30,8 @@ class MajorScaleDegreeSpec extends AnyFunSuite with Matchers {
             diatonicSemitones.n - majorSemitones.n
 
           MajorScaleDegree(n, semitonesDelta)
-        }
 
       println {
         Scale.Diatonic.label(s) + "\n  " + modifiedMajorScale.map(_.spell).mkString(", ")
       }
-    }
   }
-}

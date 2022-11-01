@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.htmlism.stringmealong.syntax._
 
-class NoteSpec extends AnyFunSuite with Matchers {
+class NoteSpec extends AnyFunSuite with Matchers:
   test("the next pitch after C is C#") {
     C.sharp shouldBe Cs
   }
@@ -41,4 +41,3 @@ class NoteSpec extends AnyFunSuite with Matchers {
   test("C raised by a major third is E") {
     C.raisedBy(Interval.MajorThird) shouldBe E
   }
-}

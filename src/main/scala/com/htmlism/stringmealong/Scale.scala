@@ -5,12 +5,12 @@ import scala.annotation.tailrec
 import com.htmlism.stringmealong.Interval._
 import com.htmlism.stringmealong.syntax._
 
-case class Scale(intervals: List[Interval]) {
+case class Scale(intervals: List[Interval]):
 
   /**
     * Returns a new scale with the Nth scale degree flattened
     */
-  def flat(deg: ScaleDegree): Scale = {
+  def flat(deg: ScaleDegree): Scale =
     // accounts for zero indexing AND the difference between intervals and degrees
     val intervalStartIndex = deg.n - 2
     val intervalEndIndex = deg.n - 1
@@ -20,7 +20,6 @@ case class Scale(intervals: List[Interval]) {
         .updated(intervalStartIndex, new Interval(intervals(intervalStartIndex).semitones - 1))
         .updated(intervalEndIndex, new Interval(intervals(intervalEndIndex).semitones + 1))
     }
-  }
 
   /**
     * Returns a new scale with the Nth scale degree flattened
@@ -33,15 +32,14 @@ case class Scale(intervals: List[Interval]) {
 
   def intervalAtIndex(n: Int): Interval =
     intervals(n % intervals.length)
-}
 
-object Scale {
+object Scale:
   def toPitchCollectionFrom(root: Pitch, scale: Scale): List[Pitch] =
     pitchList(List(root), scale.intervals)
 
   @tailrec
   private def pitchList(xs: List[Pitch], intervals: List[Interval]): List[Pitch] =
-    intervals match {
+    intervals match
       case newestInterval :: remainingIntervals =>
         val newPitch =
           List
@@ -52,7 +50,6 @@ object Scale {
 
       case Nil =>
         xs.reverse
-    }
 
   val MajorScale: Scale =
     Scale(List(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep))
@@ -69,7 +66,7 @@ object Scale {
   val MinorPentatonicScale: Scale =
     Scale(List(AugmentedSecond, AugmentedSecond, WholeStep, AugmentedSecond, WholeStep))
 
-  object Diatonic {
+  object Diatonic:
     val Ionian: Scale =
       MajorScale
 
@@ -108,5 +105,3 @@ object Scale {
     def label(s: Scale): String =
       labels
         .getOrElse(s, "UNRECOGNIZED DIATONIC SCALE")
-  }
-}

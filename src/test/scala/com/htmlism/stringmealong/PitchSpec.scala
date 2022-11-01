@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.htmlism.stringmealong.syntax._
 
-class PitchSpec extends AnyFunSuite with Matchers {
+class PitchSpec extends AnyFunSuite with Matchers:
   test("the next pitch after C2 is C#2") {
     C.o2.sharp shouldBe Cs.o2
   }
@@ -29,4 +29,3 @@ class PitchSpec extends AnyFunSuite with Matchers {
   test("a fifth from C2 is G2") {
     C.o2.fifth shouldBe G.o2
   }
-}

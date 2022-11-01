@@ -2,7 +2,7 @@ package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.syntax._
 
-object TunedString {
+object TunedString:
   def apply(pitch: Pitch, n: Int): TunedString =
     TunedString {
       pitchList(List(pitch), n)
@@ -17,15 +17,13 @@ object TunedString {
       xs.reverse
     else
       pitchList(xs.head.sharp :: xs, n - 1)
-}
 
 /**
   * A collection of pitches starting from an open tone to each fretted tone
   */
-case class TunedString(pitches: List[Pitch]) {
+case class TunedString(pitches: List[Pitch]):
   def fingerings(n: Note): List[Int] =
     pitches
       .zipWithIndex
       .filter { case (pitch, _) => pitch.note == n }
       .map(_._2)
-}

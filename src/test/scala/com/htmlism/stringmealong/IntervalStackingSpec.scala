@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.htmlism.stringmealong.syntax._
 
-class IntervalStackingSpec extends AnyFunSuite with Matchers {
+class IntervalStackingSpec extends AnyFunSuite with Matchers:
   test("major chord: major minor stacking") {
     C.raisedBy(Interval.MajorThird) shouldBe E
 
@@ -21,4 +21,3 @@ class IntervalStackingSpec extends AnyFunSuite with Matchers {
       .raisedBy(Interval.MinorThird)
       .raisedBy(Interval.MajorThird) shouldBe G
   }
-}
