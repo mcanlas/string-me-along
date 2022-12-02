@@ -4,12 +4,12 @@ case class MajorScaleDegree(n: Int, semitones: Int):
   def spell: String =
     val accidental =
       semitones match
-        case 1 => "#"
-        case 2 => "x"
-        case 0 => ""
+        case 1  => "#"
+        case 2  => "x"
+        case 0  => ""
         case -1 => "b"
         case -2 => "bb"
-        case _ =>
+        case _  =>
           "unknown notation"
 
     n.toString + accidental

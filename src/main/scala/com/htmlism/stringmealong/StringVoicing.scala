@@ -11,7 +11,7 @@ object StringVoicing:
         val fingeringOnString = v.fingering(n)
 
         fingeringOnString match
-          case OnFret(n) =>
+          case OnFret(n)      =>
             List(s.pitches(n))
           case SkipThisString =>
             Nil
@@ -21,7 +21,7 @@ object StringVoicing:
 
   def difficulty(instrument: StringInstrument)(v: StringVoicing): (Int, Int, Int) =
     val asNumeric = v.fingering.map {
-      case OnFret(n) =>
+      case OnFret(n)      =>
         n
       case SkipThisString =>
         99
@@ -37,7 +37,7 @@ object StringVoicing:
   def safeSpan(xs: List[Int])(f: List[Int] => Int): Int =
     xs match
       case Nil => 0
-      case _ => f(xs)
+      case _   => f(xs)
 
 case class StringVoicing(fingering: List[Fingering]):
   def +(that: Fingering): StringVoicing =

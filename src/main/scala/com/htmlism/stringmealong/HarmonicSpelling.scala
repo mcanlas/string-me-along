@@ -24,11 +24,11 @@ object HarmonicSpelling:
 
         val accidentalString =
           delta match
-            case -2 => "bb"
+            case -2      => "bb"
             case -1 | 11 => "b"
             case 0 | -12 => ""
             case 1 | -11 => "#"
-            case 2 => "x"
+            case 2       => "x"
 
         baseSpellingAtDegree.spell + accidentalString
       }
