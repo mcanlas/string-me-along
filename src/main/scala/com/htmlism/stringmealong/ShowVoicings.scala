@@ -11,7 +11,7 @@ object ShowVoicings extends App:
       .fingerings(note) match
       case Nil =>
         List(SkipThisString)
-      case xs  =>
+      case xs =>
         xs.map(OnFret.apply)
 
   def combine(vs: List[StringVoicing], fs: List[Fingering]) =
@@ -44,7 +44,7 @@ object ShowVoicings extends App:
     stringVoicing
       .fingering
       .map {
-        case OnFret(f)      =>
+        case OnFret(f) =>
           f
         case SkipThisString =>
           "X"
@@ -56,7 +56,7 @@ object ShowVoicings extends App:
       .fingering
       .zipWithIndex
       .map {
-        case (OnFret(f), n)      =>
+        case (OnFret(f), n) =>
           val pitch = instrument.tunedStrings.toList(n).pitches(f)
 
           Note.spelling(pitch.note.n) + pitch.octave.n
