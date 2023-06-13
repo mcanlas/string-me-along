@@ -20,11 +20,13 @@ object StringVoicing:
     pitches.map(_.note).toSet.size
 
   def difficulty(instrument: StringInstrument)(v: StringVoicing): (Int, Int, Int) =
-    val asNumeric = v.fingering.map:
-      case OnFret(n) =>
-        n
-      case SkipThisString =>
-        99
+    val asNumeric = v
+      .fingering
+      .map:
+        case OnFret(n) =>
+          n
+        case SkipThisString =>
+          99
 
     val nonZeroMin = safeSpan(asNumeric.filter(_ != 0))(_.min)
     val nonZeroMax = safeSpan(asNumeric.filter(_ != 0))(_.max)
