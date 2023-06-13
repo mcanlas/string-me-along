@@ -15,11 +15,10 @@ case class Scale(intervals: List[Interval]):
     val intervalStartIndex = deg.n - 2
     val intervalEndIndex   = deg.n - 1
 
-    Scale {
+    Scale:
       intervals
         .updated(intervalStartIndex, new Interval(intervals(intervalStartIndex).semitones - 1))
         .updated(intervalEndIndex, new Interval(intervals(intervalEndIndex).semitones + 1))
-    }
 
   /**
     * Returns a new scale with the Nth scale degree flattened

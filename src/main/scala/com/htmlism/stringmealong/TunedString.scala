@@ -4,9 +4,8 @@ import com.htmlism.stringmealong.syntax._
 
 object TunedString:
   def apply(pitch: Pitch, n: Int): TunedString =
-    TunedString {
+    TunedString:
       pitchList(List(pitch), n)
-    }
 
   /**
     * Generates an ascending list of pitches raised by `n` semitones.

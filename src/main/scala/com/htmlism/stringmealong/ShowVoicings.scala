@@ -43,26 +43,24 @@ object ShowVoicings extends App:
   def toPrintedFingering(stringVoicing: StringVoicing): String =
     stringVoicing
       .fingering
-      .map {
+      .map:
         case OnFret(f) =>
           f
         case SkipThisString =>
           "X"
-      }
       .mkString(",")
 
   def toPrintedChord(instrument: StringInstrument)(stringVoicing: StringVoicing): String =
     stringVoicing
       .fingering
       .zipWithIndex
-      .map {
+      .map:
         case (OnFret(f), n) =>
           val pitch = instrument.tunedStrings.toList(n).pitches(f)
 
           Note.spelling(pitch.note.n) + pitch.octave.n
         case (SkipThisString, _) =>
           "X"
-      }
       .mkString(",")
 
   demo(ukulele, majorChord(C))

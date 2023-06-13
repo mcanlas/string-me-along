@@ -4,22 +4,20 @@ import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
 class ScaleSpec extends AnyFunSuite with Matchers:
-  test("natural minor derivation from parallel major") {
+  test("natural minor derivation from parallel major"):
     Scale
       .MajorScale
       .flat(ScaleDegree(3))
       .flat(ScaleDegree(6))
       .flat(ScaleDegree(7)) shouldBe Scale.NaturalMinorScale
-  }
 
-  test("harmonic minor derivation from parallel major") {
+  test("harmonic minor derivation from parallel major"):
     Scale
       .MajorScale
       .flat(ScaleDegree(3))
       .flat(ScaleDegree(6)) shouldBe Scale.HarmonicMinorScale
-  }
 
-  test("diatonic cycle") {
+  test("diatonic cycle"):
     Scale.Diatonic.Ionian.nextIntervalSequence shouldBe Scale.Diatonic.Dorian
     Scale.Diatonic.Dorian.nextIntervalSequence shouldBe Scale.Diatonic.Phrygian
     Scale.Diatonic.Phrygian.nextIntervalSequence shouldBe Scale.Diatonic.Lydian
@@ -27,4 +25,3 @@ class ScaleSpec extends AnyFunSuite with Matchers:
     Scale.Diatonic.Myxolydian.nextIntervalSequence shouldBe Scale.Diatonic.Aeolion
     Scale.Diatonic.Aeolion.nextIntervalSequence shouldBe Scale.Diatonic.Locrian
     Scale.Diatonic.Locrian.nextIntervalSequence shouldBe Scale.Diatonic.Ionian
-  }
