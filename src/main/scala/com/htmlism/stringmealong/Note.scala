@@ -4,19 +4,18 @@ object Note:
   val min: Int = 0
   val max: Int = 11
 
-  implicit val noteOrdinal: MusicallyOrdinal[Note] =
-    new MusicallyOrdinal[Note]:
-      def sharpen(x: Note): Note =
-        if (x.n < Note.max)
-          Note(x.n + 1)
-        else
-          Note(Note.min)
+  given MusicallyOrdinal[Note] with
+    def sharpen(x: Note): Note =
+      if (x.n < Note.max)
+        Note(x.n + 1)
+      else
+        Note(Note.min)
 
-      override def flatten(x: Note): Note =
-        if (x.n == Note.min)
-          Note(Note.max)
-        else
-          Note(x.n - 1)
+    def flatten(x: Note): Note =
+      if (x.n == Note.min)
+        Note(Note.max)
+      else
+        Note(x.n - 1)
 
   def spelling(n: Int): String =
     List("C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B")(n)

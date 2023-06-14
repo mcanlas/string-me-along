@@ -15,13 +15,12 @@ case class MajorScaleDegree(n: Int, semitones: Int):
     n.toString + accidental
 
 object MajorScaleDegree:
-  implicit val majorScaleDegreeOrdinal: MusicallyOrdinal[MajorScaleDegree] =
-    new MusicallyOrdinal[MajorScaleDegree]:
-      def sharpen(x: MajorScaleDegree): MajorScaleDegree =
-        x.copy(semitones = x.semitones + 1)
+  given MusicallyOrdinal[MajorScaleDegree] with
+    def sharpen(x: MajorScaleDegree): MajorScaleDegree =
+      x.copy(semitones = x.semitones + 1)
 
-      def flatten(x: MajorScaleDegree): MajorScaleDegree =
-        x.copy(semitones = x.semitones - 1)
+    def flatten(x: MajorScaleDegree): MajorScaleDegree =
+      x.copy(semitones = x.semitones - 1)
 
   val Root: MajorScaleDegree =
     MajorScaleDegree(1, 0)
