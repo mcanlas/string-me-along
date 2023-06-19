@@ -3,7 +3,7 @@ package com.htmlism.stringmealong
 import scala.annotation.tailrec
 
 package object syntax:
-  implicit class MusicallyOrdinalOps[A](x: A)(implicit ev: MusicallyOrdinal[A]):
+  implicit class MusicallyOrdinalOps[A](x: A)(using ev: MusicallyOrdinal[A]):
     def sharp: A =
       ev.sharpen(x)
 
