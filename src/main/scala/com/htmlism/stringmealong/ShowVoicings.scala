@@ -1,6 +1,6 @@
 package com.htmlism.stringmealong
 
-import com.htmlism.stringmealong.syntax._
+import com.htmlism.stringmealong.syntax.*
 
 object ShowVoicings extends App:
   def majorChord(note: Note) =

@@ -3,7 +3,7 @@ package com.htmlism.stringmealong
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-import com.htmlism.stringmealong.syntax._
+import com.htmlism.stringmealong.syntax.*
 
 class OctatonicSpellingSpec extends AnyFunSuite with Matchers:
   test("spell C major"):

@@ -1,6 +1,6 @@
 package com.htmlism.stringmealong
 
-import com.htmlism.stringmealong.syntax._
+import com.htmlism.stringmealong.syntax.*
 
 object TunedString:
   def apply(pitch: Pitch, n: Int): TunedString =
@@ -12,10 +12,8 @@ object TunedString:
     */
   @scala.annotation.tailrec
   def pitchList(xs: List[Pitch], n: Int): List[Pitch] =
-    if (n < 1)
-      xs.reverse
-    else
-      pitchList(xs.head.sharp :: xs, n - 1)
+    if n < 1 then xs.reverse
+    else pitchList(xs.head.sharp :: xs, n - 1)
 
 /**
   * A collection of pitches starting from an open tone to each fretted tone

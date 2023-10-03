@@ -2,8 +2,8 @@ package com.htmlism.stringmealong
 
 import scala.annotation.tailrec
 
-import com.htmlism.stringmealong.Interval._
-import com.htmlism.stringmealong.syntax._
+import com.htmlism.stringmealong.Interval.*
+import com.htmlism.stringmealong.syntax.*
 
 case class Scale(intervals: List[Interval]):
 

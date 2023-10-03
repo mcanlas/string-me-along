@@ -21,7 +21,5 @@ package object syntax:
 
   @tailrec
   private def applyN[A](x: A, f: A => A, n: Int): A =
-    if (n < 1)
-      x
-    else
-      applyN(f(x), f, n - 1)
+    if n < 1 then x
+    else applyN(f(x), f, n - 1)

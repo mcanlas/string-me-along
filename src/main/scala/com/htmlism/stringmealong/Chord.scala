@@ -1,6 +1,6 @@
 package com.htmlism.stringmealong
 
-import com.htmlism.stringmealong.Interval._
+import com.htmlism.stringmealong.Interval.*
 
 trait Chord:
 

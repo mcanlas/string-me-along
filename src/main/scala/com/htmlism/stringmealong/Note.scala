@@ -6,16 +6,12 @@ object Note:
 
   given MusicallyOrdinal[Note] with
     def sharpen(x: Note): Note =
-      if (x.n < Note.max)
-        Note(x.n + 1)
-      else
-        Note(Note.min)
+      if x.n < Note.max then Note(x.n + 1)
+      else Note(Note.min)
 
     def flatten(x: Note): Note =
-      if (x.n == Note.min)
-        Note(Note.max)
-      else
-        Note(x.n - 1)
+      if x.n == Note.min then Note(Note.max)
+      else Note(x.n - 1)
 
   def spelling(n: Int): String =
     List("C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B")(n)

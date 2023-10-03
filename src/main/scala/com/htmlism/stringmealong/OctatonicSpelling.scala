@@ -5,10 +5,8 @@ case class OctatonicSpelling(n: Int):
     OctatonicSpelling.spellings(n)
 
   def nextOctatonic: OctatonicSpelling =
-    if (n < 6)
-      this.copy(n = n + 1)
-    else
-      this.copy(n = 0)
+    if n < 6 then this.copy(n = n + 1)
+    else this.copy(n          = 0)
 
 object OctatonicSpelling:
   val A: OctatonicSpelling = OctatonicSpelling(0)

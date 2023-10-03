@@ -3,11 +3,11 @@ package com.htmlism.stringmealong
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-import com.htmlism.stringmealong.syntax._
+import com.htmlism.stringmealong.syntax.*
 
 class MajorScaleDegreeSpec extends AnyFunSuite with Matchers:
   test("modes as major scale modifications"):
-    for (s <- Scale.Diatonic.all)
+    for s <- Scale.Diatonic.all do
       val majorScaleIntervalsWithRoot =
         Interval.Root :: Scale.MajorScale.intervals
 
