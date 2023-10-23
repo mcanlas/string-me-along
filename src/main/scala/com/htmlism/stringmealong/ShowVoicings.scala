@@ -15,18 +15,18 @@ object ShowVoicings extends App:
         xs.map(OnFret.apply)
 
   def combine(vs: List[StringVoicing], fs: List[Fingering]) =
-    for {
+    for
       v <- vs
       f <- fs
-    } yield v + f
+    yield v + f
 
   def demo(instrument: StringInstrument, chord: List[Note]) =
     val stringsWithFingerings =
       instrument.tunedStrings.toList.map { tunedString =>
-        for {
+        for
           note <- chord
           f    <- fingerings(tunedString)(note)
-        } yield f
+        yield f
       }
 
     val zero =
