@@ -10,5 +10,9 @@ class TunedStringSpec extends AnyFunSuite with Matchers:
     C.o4 * 2 shouldBe TunedString(List(C.o4, C.o4.sharp, C.o4.sharp.sharp))
 
   test("C4 string with four frets can play C and E"):
-    (C.o4 * 4).fingerings(C) should contain theSameElementsInOrderAs List(0)
-    (C.o4 * 4).fingerings(E) should contain theSameElementsInOrderAs List(4)
+    CheckpointBuilder()
+      .assert:
+        (C.o4 * 4).fingerings(C) should contain theSameElementsInOrderAs List(0)
+      .assert:
+        (C.o4 * 4).fingerings(E) should contain theSameElementsInOrderAs List(4)
+      .reportAll
