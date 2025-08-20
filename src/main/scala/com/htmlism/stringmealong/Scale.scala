@@ -2,10 +2,12 @@ package com.htmlism.stringmealong
 
 import scala.annotation.tailrec
 
+import cats.data.NonEmptyList
+
 import com.htmlism.stringmealong.Interval.*
 import com.htmlism.stringmealong.syntax.*
 
-case class Scale(intervals: List[Interval]):
+case class Scale(intervals: NonEmptyList[Interval]):
 
   /**
     * Returns a new scale with the Nth scale degree flattened
@@ -17,27 +19,38 @@ case class Scale(intervals: List[Interval]):
 
     Scale:
       intervals
-        .updated(intervalStartIndex, new Interval(intervals(intervalStartIndex).semitones - 1))
-        .updated(intervalEndIndex, new Interval(intervals(intervalEndIndex).semitones + 1))
+        .zipWithIndex
+        // TODO where is the updated method on NonEmptyList?
+        .map: (int, ix) =>
+          if ix == intervalStartIndex then new Interval(intervals.toList(intervalStartIndex).semitones - 1)
+          else if ix == intervalEndIndex then Interval(intervals.toList(intervalEndIndex).semitones + 1)
+          else int
 
   /**
     * Returns a new scale with the Nth scale degree flattened
     */
-  def sharp(n: Int): Scale =
-    ???
+//  def sharp(n: Int): Scale =
+//    ???
 
   def nextIntervalSequence: Scale =
-    Scale(intervals.tail ::: List(intervals.head))
+    Scale(
+      NonEmptyList
+        .fromListUnsafe(
+          intervals
+            .tail
+            .appended(intervals.head)
+        )
+    )
 
   def intervalAtIndex(n: Int): Interval =
-    intervals(n % intervals.length)
+    intervals.toList(n % intervals.length)
 
 object Scale:
   def toPitchCollectionFrom(root: Pitch, scale: Scale): List[Pitch] =
-    pitchList(List(root), scale.intervals)
+    pitchList(NonEmptyList.of(root), scale.intervals.toList)
 
   @tailrec
-  private def pitchList(xs: List[Pitch], intervals: List[Interval]): List[Pitch] =
+  private def pitchList(xs: NonEmptyList[Pitch], intervals: List[Interval]): List[Pitch] =
     intervals match
       case newestInterval :: remainingIntervals =>
         val newPitch =
@@ -45,50 +58,52 @@ object Scale:
             .fill(newestInterval.semitones)(())
             .foldLeft(xs.head)((acc, _) => acc.sharp)
 
-        pitchList(newPitch +: xs, remainingIntervals)
+        pitchList(xs.prepend(newPitch), remainingIntervals)
 
       case Nil =>
-        xs.reverse
+        xs
+          .toList
+          .reverse
 
   val MajorScale: Scale =
-    Scale(List(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep))
+    Scale(NonEmptyList.of(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep))
 
   val NaturalMinorScale: Scale =
-    Scale(List(WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep))
+    Scale(NonEmptyList.of(WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep))
 
   val HarmonicMinorScale: Scale =
-    Scale(List(WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, AugmentedSecond, HalfStep))
+    Scale(NonEmptyList.of(WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, AugmentedSecond, HalfStep))
 
   val MajorPentatonicScale: Scale =
-    Scale(List(WholeStep, WholeStep, AugmentedSecond, WholeStep, AugmentedSecond))
+    Scale(NonEmptyList.of(WholeStep, WholeStep, AugmentedSecond, WholeStep, AugmentedSecond))
 
   val MinorPentatonicScale: Scale =
-    Scale(List(AugmentedSecond, AugmentedSecond, WholeStep, AugmentedSecond, WholeStep))
+    Scale(NonEmptyList.of(AugmentedSecond, AugmentedSecond, WholeStep, AugmentedSecond, WholeStep))
 
   object Diatonic:
     val Ionian: Scale =
       MajorScale
 
     val Dorian: Scale =
-      Scale(List(WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep, WholeStep))
+      Scale(NonEmptyList.of(WholeStep, HalfStep, WholeStep, WholeStep, WholeStep, HalfStep, WholeStep))
 
     val Phrygian: Scale =
-      Scale(List(HalfStep, WholeStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep))
+      Scale(NonEmptyList.of(HalfStep, WholeStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep))
 
     val Lydian: Scale =
-      Scale(List(WholeStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, HalfStep))
+      Scale(NonEmptyList.of(WholeStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, HalfStep))
 
     val Myxolydian: Scale =
-      Scale(List(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, WholeStep))
+      Scale(NonEmptyList.of(WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, HalfStep, WholeStep))
 
     val Aeolion: Scale =
       NaturalMinorScale
 
     val Locrian: Scale =
-      Scale(List(HalfStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep))
+      Scale(NonEmptyList.of(HalfStep, WholeStep, WholeStep, HalfStep, WholeStep, WholeStep, WholeStep))
 
-    val all: List[Scale] =
-      List(Ionian, Dorian, Phrygian, Lydian, Myxolydian, Aeolion, Locrian)
+    val all: NonEmptyList[Scale] =
+      NonEmptyList.of(Ionian, Dorian, Phrygian, Lydian, Myxolydian, Aeolion, Locrian)
 
     private val labels =
       Map(

@@ -7,7 +7,7 @@ import com.htmlism.stringmealong.syntax.*
 
 class MajorScaleDegreeSpec extends AnyFunSuite with Matchers:
   test("modes as major scale modifications"):
-    for s <- Scale.Diatonic.all do
+    for s <- Scale.Diatonic.all.toList do
       val majorScaleIntervalsWithRoot =
         Interval.Root :: Scale.MajorScale.intervals
 

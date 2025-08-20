@@ -28,10 +28,10 @@ object StringVoicing:
         case SkipThisString =>
           99
 
-    val nonZeroMin = safeSpan(asNumeric.filter(_ != 0))(_.min)
-    val nonZeroMax = safeSpan(asNumeric.filter(_ != 0))(_.max)
+    val nonZeroMin = safeSpan(asNumeric.filter(_ != 0))(_.minOption.getOrElse(0))
+    val nonZeroMax = safeSpan(asNumeric.filter(_ != 0))(_.maxOption.getOrElse(0))
 
-    val height = asNumeric.max
+    val height = asNumeric.maxOption.getOrElse(0)
 
     (-1 * uniqueNotes(instrument)(v), nonZeroMax - nonZeroMin, height)
 

@@ -7,7 +7,8 @@ import com.htmlism.stringmealong.syntax.*
 
 class IntervalStackingSpec extends AnyFunSuite with Matchers:
   test("major chord: major minor stacking"):
-    CheckpointBuilder()
+    CheckpointBuilder
+      .empty
       .assert:
         C.raisedBy(Interval.MajorThird) shouldBe E
       .assert:
@@ -17,7 +18,8 @@ class IntervalStackingSpec extends AnyFunSuite with Matchers:
       .reportAll
 
   test("minor chord: minor major stacking"):
-    CheckpointBuilder()
+    CheckpointBuilder
+      .empty
       .assert:
         C.raisedBy(Interval.MinorThird) shouldBe Eb
       .assert:

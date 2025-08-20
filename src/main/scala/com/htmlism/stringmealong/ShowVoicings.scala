@@ -36,7 +36,9 @@ object ShowVoicings extends App:
       .foldLeft(zero)(combine)
       .sortBy(StringVoicing.difficulty(instrument))
       .map(sv =>
-        toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing.difficulty(instrument)(sv)
+        toPrintedFingering(sv) + " " + toPrintedChord(instrument)(sv) + " " + StringVoicing
+          .difficulty(instrument)(sv)
+          .toString
       )
       .foreach(println)
 
@@ -58,7 +60,7 @@ object ShowVoicings extends App:
         case (OnFret(f), n) =>
           val pitch = instrument.tunedStrings.toList(n).pitches(f)
 
-          Note.spelling(pitch.note.n) + pitch.octave.n
+          Note.spelling(pitch.note.n) + pitch.octave.n.toString
         case (SkipThisString, _) =>
           "X"
       .mkString(",")

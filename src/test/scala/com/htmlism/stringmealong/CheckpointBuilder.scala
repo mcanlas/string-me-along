@@ -3,7 +3,10 @@ package com.htmlism.stringmealong
 import org.scalactic.source
 import org.scalatest.Checkpoints.Checkpoint
 
-case class CheckpointBuilder(xs: List[() => Unit] = Nil):
+object CheckpointBuilder:
+  val empty: CheckpointBuilder = CheckpointBuilder(Nil)
+
+case class CheckpointBuilder(xs: List[() => Unit]):
   def assert[A](f: => A): CheckpointBuilder =
     copy(xs = xs :+ { () =>
       val _ = f

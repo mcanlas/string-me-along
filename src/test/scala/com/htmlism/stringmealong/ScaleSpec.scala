@@ -18,7 +18,8 @@ class ScaleSpec extends AnyFunSuite with Matchers:
       .flat(ScaleDegree(6)) shouldBe Scale.HarmonicMinorScale
 
   test("diatonic cycle"):
-    CheckpointBuilder()
+    CheckpointBuilder
+      .empty
       .assert:
         Scale.Diatonic.Ionian.nextIntervalSequence shouldBe Scale.Diatonic.Dorian
       .assert:

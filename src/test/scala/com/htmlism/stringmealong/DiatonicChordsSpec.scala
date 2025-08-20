@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 class DiatonicChordsSpec extends AnyFunSuite with Matchers:
   test("diatonic triads"):
-    for s <- Scale.Diatonic.all do
+    for s <- Scale.Diatonic.all.toList do
       println()
       println(Scale.Diatonic.label(s))
 
@@ -29,7 +29,7 @@ class DiatonicChordsSpec extends AnyFunSuite with Matchers:
         println(Triad.atScaleDegree(ScaleDegree(scaleDegreeN), triad))
 
   test("diatonic sevenths"):
-    for s <- Scale.Diatonic.all do
+    for s <- Scale.Diatonic.all.toList do
       println()
       println(Scale.Diatonic.label(s))
 

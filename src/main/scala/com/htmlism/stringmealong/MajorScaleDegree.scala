@@ -9,7 +9,7 @@ case class MajorScaleDegree(n: Int, semitones: Int):
         case 0  => ""
         case -1 => "b"
         case -2 => "bb"
-        case _ =>
+        case _  =>
           "unknown notation"
 
     n.toString + accidental

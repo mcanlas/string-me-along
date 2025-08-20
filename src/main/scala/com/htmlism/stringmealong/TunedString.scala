@@ -1,18 +1,20 @@
 package com.htmlism.stringmealong
 
+import cats.data.NonEmptyList
+
 import com.htmlism.stringmealong.syntax.*
 
 object TunedString:
   def apply(pitch: Pitch, n: Int): TunedString =
     TunedString:
-      pitchList(List(pitch), n)
+      pitchList(NonEmptyList.of(pitch), n)
 
   /**
     * Generates an ascending list of pitches raised by `n` semitones.
     */
   @scala.annotation.tailrec
-  def pitchList(xs: List[Pitch], n: Int): List[Pitch] =
-    if n < 1 then xs.reverse
+  def pitchList(xs: NonEmptyList[Pitch], n: Int): List[Pitch] =
+    if n < 1 then xs.toList.reverse
     else pitchList(xs.head.sharp :: xs, n - 1)
 
 /**
