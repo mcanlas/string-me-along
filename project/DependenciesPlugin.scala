@@ -1,0 +1,19 @@
+import sbt.Keys.*
+import sbt.*
+
+object DependenciesPlugin extends AutoPlugin {
+  override def trigger = allRequirements
+
+  object autoImport {
+    implicit class DependencyOps(p: Project) {
+      def withCats: Project =
+        p.settings(libraryDependencies += "org.typelevel" %% "cats-core" % "2.13.0")
+
+      def withEffectMonad: Project =
+        p.settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.6.3")
+
+      def withTesting: Project =
+        p.settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test")
+    }
+  }
+}
