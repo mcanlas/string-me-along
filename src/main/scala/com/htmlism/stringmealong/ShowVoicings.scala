@@ -2,7 +2,7 @@ package com.htmlism.stringmealong
 
 import com.htmlism.stringmealong.syntax.*
 
-object ShowVoicings extends App:
+object ShowVoicings:
   def majorChord(note: Note) =
     List(note, note.third, note.fifth)
 
@@ -65,10 +65,11 @@ object ShowVoicings extends App:
           "X"
       .mkString(",")
 
-  demo(ukulele, majorChord(C))
-  println()
-  demo(ukulele, majorChord(F))
-  println()
-  demo(ukulele, majorChord(G))
-  println()
-  demo(ukulele, majorChord(A))
+  def main(args: Array[String]): Unit =
+    demo(ukulele, majorChord(C))
+    println()
+    demo(ukulele, majorChord(F))
+    println()
+    demo(ukulele, majorChord(G))
+    println()
+    demo(ukulele, majorChord(A))
