@@ -15,7 +15,7 @@ class MajorScaleDegreeSpec extends AnyFunSuite with Matchers:
         Interval.Root :: s.intervals
 
       val modifiedMajorScale =
-        for (n <- 1 to 8) yield
+        for n <- 1 to 8 yield
           val majorSemitones =
             majorScaleIntervalsWithRoot
               .take(n)
