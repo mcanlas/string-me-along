@@ -29,6 +29,7 @@ object HarmonicSpelling:
             case 0 | -12 => ""
             case 1 | -11 => "#"
             case 2       => "x"
+            case _       => "_"
 
         baseSpellingAtDegree.spell + accidentalString
       }

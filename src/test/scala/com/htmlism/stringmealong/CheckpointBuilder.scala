@@ -17,7 +17,7 @@ case class CheckpointBuilder(xs: List[() => Unit]):
     xs
       .foldLeft(new Checkpoint): (cp, f) =>
         val _ =
-          cp.apply(f.apply)
+          cp.apply(f.apply())
 
         cp
       .reportAll()
